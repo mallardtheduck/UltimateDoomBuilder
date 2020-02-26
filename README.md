@@ -1,4 +1,13 @@
-**System requirements:**
+**This repository is an attempt to re-enable Linux/Mono support**
+
+Requirements:
+
+- 2.4 GHz CPU or faster (multi-core recommended)
+- Linux with a recent version of Mono
+- Graphics card with Pixel Shader model 2.0 support
+
+**Original readme starts here**
+
 - 2.4 GHz CPU or faster (multi-core recommended)
 - Windows 7, 8 or 10
 - Graphics card with Pixel Shader model 2.0 support

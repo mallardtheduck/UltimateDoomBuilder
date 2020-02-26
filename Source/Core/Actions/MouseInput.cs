@@ -88,6 +88,8 @@ namespace CodeImp.DoomBuilder.Actions
 
     public class RawMouse
     {
+        System.Drawing.Point oriPos;
+        bool posValid = false;
         public RawMouse(System.Windows.Forms.Control control)
         {
             Handle = RawMouse_New(control.Handle);
@@ -102,7 +104,21 @@ namespace CodeImp.DoomBuilder.Actions
 
         public MouseState Poll()
         {
-            return new MouseState(RawMouse_GetX(Handle), RawMouse_GetY(Handle));
+            int xDiff = 0;
+            int yDiff = 0;
+            if (posValid)
+            {
+                xDiff = Cursor.Position.X - oriPos.X;
+                yDiff = Cursor.Position.Y - oriPos.Y;
+                Cursor.Position = oriPos;
+            }
+            else
+            {
+                oriPos = Cursor.Position;
+                posValid = true;
+            }
+            return new MouseState(xDiff, yDiff);
+            //return new MouseState(RawMouse_GetX(Handle), RawMouse_GetY(Handle));
         }
 
         public bool Disposed { get { return Handle == IntPtr.Zero; } }

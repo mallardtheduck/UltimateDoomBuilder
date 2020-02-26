@@ -341,6 +341,7 @@ public:
 	void ClearCurrent() override { }
 	void SwapBuffers() override { }
 	bool IsCurrent() override { return false; }
+	bool IsCurrent() override { return false; }
 
 	int GetWidth() const override { return 320; }
 	int GetHeight() const override { return 200; }
@@ -464,6 +465,7 @@ public:
 	void MakeCurrent() override;
 	void ClearCurrent() override;
 	void SwapBuffers() override;
+	bool IsCurrent() override;
 
 	int GetWidth() const override;
 	int GetHeight() const override;
@@ -567,6 +569,12 @@ void OpenGLContext::SwapBuffers()
 {
 	glx.glXSwapBuffers(disp, window);
 }
+
+bool OpenGLContext::IsCurrent()
+{
+	return (glx.glXGetCurrentContext() == opengl_context);
+}
+
 
 int OpenGLContext::GetWidth() const
 {

@@ -1488,6 +1488,7 @@ namespace CodeImp.DoomBuilder.Windows
 		private void display_OnKeyReleased(object sender, KeyEventArgs e)
 		{
 			MainForm_KeyUp(sender, e);
+            menumain.Enabled = true;
 		}
 		
 		// These prevent focus changes by way of TAB or Arrow keys
@@ -1504,7 +1505,8 @@ namespace CodeImp.DoomBuilder.Windows
 			{
 				LoseFocus(this, EventArgs.Empty);
 				KeyEventArgs ea = new KeyEventArgs(e.KeyData);
-				MainForm_KeyDown(sender, ea);
+                MainForm_KeyDown(sender, ea);
+                if (ea.Handled) menumain.Enabled = false;
 			}
 		}
 		
@@ -4384,10 +4386,10 @@ namespace CodeImp.DoomBuilder.Windows
 			long deltatime = curtime - lastupdatetime;
 			lastupdatetime = curtime;
 			
-			if((General.Map != null) && (General.Editing.Mode != null))
+            if ((General.Map != null) && (General.Editing.Mode != null))
 			{
 				// In exclusive mouse mode?
-				if(mouseinput != null)
+				if(this.Enabled && mouseinput != null && MouseInDisplay)
 				{
 					Vector2D deltamouse = mouseinput.Process();
 					General.Plugins.OnEditMouseInput(deltamouse);
