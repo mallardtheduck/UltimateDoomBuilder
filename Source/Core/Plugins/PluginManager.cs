@@ -138,9 +138,14 @@ namespace CodeImp.DoomBuilder.Plugins
 				
 				// Find the file in the list
 				int filenameindex = -1;
-				for(int i = 0; i < filenames.Count; i++)
-					if(string.Compare(Path.GetFileName(filenames[i]), loadfilename, true) == 0)
-						filenameindex = i;
+                for (int i = 0; i < filenames.Count; i++)
+                {
+                    if (string.Compare(Path.GetFileName(filenames[i]), loadfilename, true) == 0)
+                    {
+                        filenameindex = i;
+                        break;
+                    }
+                }
 				
 				if(filenameindex > -1)
 				{

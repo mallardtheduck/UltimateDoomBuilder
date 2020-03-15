@@ -700,7 +700,8 @@ namespace CodeImp.DoomBuilder.Data
 
 			// Start a low priority thread to load images in background
 			General.WriteLogLine("Starting background resource loading...");
-            int numThreads = Math.Min(Math.Max(Environment.ProcessorCount * 3 / 4, 1), 16); // Use 75% of processors available, minimum one and maximum 16
+            // Loading images is a disk-bound process, 2 threads should be more than enough to saturate the disk on a reasonably fast CPU.
+            int numThreads = 2;
             backgroundloader = new Thread[numThreads];
             for (int i = 0; i < numThreads; i++)
             {
@@ -768,12 +769,12 @@ namespace CodeImp.DoomBuilder.Data
 				img.ImageState = ImageLoadState.Loading;
                 img.PreviewState = ImageLoadState.Loading;
                 lock (syncobject)
-                {
+                {        
                     imageque.Enqueue(img);
                     Monitor.Pulse(syncobject);
                 }
-			}
-		}
+            }
+        }
 
         internal void QueueLoadPreview(ImageData img)
         {

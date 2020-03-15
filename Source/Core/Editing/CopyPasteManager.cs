@@ -317,20 +317,24 @@ namespace CodeImp.DoomBuilder.Editing
 							{
 								using(Stream memstream = (Stream)Clipboard.GetData(CLIPBOARD_DATA_FORMAT))
 								{
-									// Rewind before use
-									memstream.Seek(0, SeekOrigin.Begin);
+                                    bool success = false;
+                                    if (memstream.CanSeek && memstream.CanRead)
+                                    {
+                                        // Rewind before use
+                                        memstream.Seek(0, SeekOrigin.Begin);
 
-									// Read data stream
-									ClipboardStreamReader reader = new ClipboardStreamReader(); //mxd
-									General.Map.Map.BeginAddRemove();
-									bool success = reader.Read(General.Map.Map, memstream);
-									General.Map.Map.EndAddRemove();
-									if(!success) //mxd
-									{
-										General.Map.UndoRedo.WithdrawUndo(); // This will also mess with the marks...
-										General.Map.Map.ClearAllMarks(true); // So re-mark all current geometry...
-									}
-								}
+                                        // Read data stream
+                                        ClipboardStreamReader reader = new ClipboardStreamReader(); //mxd
+                                        General.Map.Map.BeginAddRemove();
+                                        success = reader.Read(General.Map.Map, memstream);
+                                        General.Map.Map.EndAddRemove();
+                                    }
+                                    if (!success) //mxd
+                                    {
+                                        General.Map.UndoRedo.WithdrawUndo(); // This will also mess with the marks...
+                                        General.Map.Map.ClearAllMarks(true); // So re-mark all current geometry...
+                                    }
+                                }
 							}
 							// mxd. DB2/DB64 interop
 							else if(havedb2pastedata)

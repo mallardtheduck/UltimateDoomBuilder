@@ -375,7 +375,7 @@ namespace CodeImp.DoomBuilder.Rendering
 			
 			if((entries.Count == 0) && (update.numvertices > 0))
 			{
-				#if DEBUG
+				#if SDEBUG
 				if((update.floorvertices == null) || (update.ceilvertices == null))
 					General.Fail("We need both floor and ceiling vertices when the number of vertices changes!");
 				#endif

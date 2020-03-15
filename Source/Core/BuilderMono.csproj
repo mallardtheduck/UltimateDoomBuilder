@@ -2,7 +2,7 @@
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{818B3D10-F791-4C3F-9AF5-BB2D0079B63C}</ProjectGuid>
@@ -104,7 +104,7 @@
     </DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DefineConstants>TRACE;DEBUG;NO_SCINTILLA;NO_FORMS_DESIGN;NO_WIN32;NO_UPDATER;NO_DEVIL</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NO_FORMS_DESIGN;NO_WIN32;NO_UPDATER;NO_DEVIL;NO_SCINTILLA</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <PlatformTarget>x64</PlatformTarget>
@@ -605,7 +605,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Design" />
@@ -774,12 +773,6 @@
     <None Include="Resources\Updater.ico" />
     <None Include="Resources\UDB2.ico" />
     <None Include="app.manifest" />
-    <EmbeddedResource Include="Controls\Scripting\ScriptEditorControl.resx">
-      <DependentUpon>ScriptEditorControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Scripting\ScriptEditorPreviewControl.resx">
-      <DependentUpon>ScriptEditorPreviewControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\SkySphere.md3" />
     <None Include="Resources\ThingStatistics.png" />
     <None Include="Resources\Copy.png" />
@@ -1378,10 +1371,6 @@
     <None Include="Resources\SaveScript.png" />
     <None Include="Resources\OpenScript.png" />
     <None Include="Resources\NewScript.png" />
-    <EmbeddedResource Include="Controls\Scripting\ScriptEditorPanel.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>ScriptEditorPanel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Lexers.cfg" />
     <None Include="Resources\ViewBrightness.png" />
     <None Include="Resources\ViewTextureCeiling.png" />
